@@ -17,17 +17,6 @@ JOIN comments c ON l.comment_id = c.id
 JOIN posts p ON c.post_id = p.id
 WHERE p.user_id = '<user_id>';
 
--- Create index using the following commands:
-CREATE INDEX idx_posts_user_id ON posts(user_id);
-CREATE INDEX idx_comments_post_id ON comments(post_id);
-CREATE INDEX idx_likes_comment_id ON likes(comment_id);
-
--- Drop indexes after to test performance impact
-DROP INDEX IF EXISTS idx_posts_user_id;
-DROP INDEX IF EXISTS idx_comments_post_id;
-DROP INDEX IF EXISTS idx_likes_comment_id;
-
-
 -- X--------------------------------------------------------------------------------X
 
 -- Benchmark 2: Get top 10 comments with most likes
@@ -39,7 +28,7 @@ GROUP BY comment_id
 ORDER BY like_count DESC
 LIMIT 10;
 
-
+-- X--------------------------------------------------------------------------------X
 -- Benchmark 3: Find posts with no comments
 
 EXPLAIN ANALYZE
@@ -48,7 +37,7 @@ FROM posts p
 LEFT JOIN comments c ON p.id = c.post_id
 WHERE c.id IS NULL;
 
-
+-- X--------------------------------------------------------------------------------X
 -- Benchmark 4: Count total likes per user (via comments/posts)
 
 EXPLAIN ANALYZE
