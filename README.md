@@ -17,14 +17,6 @@ I created **4 tables** varying in size (100 rows, 1000 rows, 10k rows, 100k rows
 
 Still work in progress and i will keep updating this whenever i can
 
-Result (as of now):
-1. inserting likes with individual queries vs in batch. Both inserted 50k entries but batch insert was  *~100x faster*
-```
- Console Output: 
-  likes_individual: 4:40.517 (m:ss.mmm)
-  likes_batch: 2.759s
-```
-
 <br>
 
 ## Quick start
